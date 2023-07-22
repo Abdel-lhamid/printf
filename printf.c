@@ -1,44 +1,17 @@
 #include "main.h"
 #include <stdarg.h>
 
-
 /**
- *
- *
- */
-int print_char(va_list ap)
-{
-	return (_putchar(va_arg(ap, int)));
-
-}
-int print_str(va_list ap)
-{
-	int i = 0;
-	char *str = va_arg(ap, *char);
-	
-	if (str[i] == '\0' || str == NULL)
-		return (-1);
-	while (str[i] == '\0')
-	{
-		_putchar(str[i]);
-		i++;
-	}
-	return (i);
-}
-/**
- *
- *
+ * _printf - function that produces output according to a format
+ * @format: format to print
+ * Return: number of char printed
  *
  */
 
 int _printf(const char *format, ...)
 {
-	int char_p = 0, i, j;
+	int char_p = 0, i, j, printed_idf = 0;
 	va_list ap;
-
-	funct_t funcs[] = { {'c', print_char},
-			      {'s', print_str},
-			      {'\0', NULL} };
 
 	va_start(ap, format);
 	if (format != NULL && format[0] != '\0')
@@ -51,7 +24,7 @@ int _printf(const char *format, ...)
 				char_p++;
 				continue;
 			}
-			
+
 			i++;
 			if (format[i] == '%')
 			{
@@ -59,25 +32,20 @@ int _printf(const char *format, ...)
 				char_p++;
 				continue;
 			}
-			if (format[i] != 'c' && format[i] != 's')
+			printed_idf = printId(format[i], ap);
+
+			if (printed_idf > 0)
+			{
+				char_p += printed_idf;
+			}
+			if (printed_idf == 0)
 			{
 				_putchar('%');
 				char_p++;
 				_putchar(format[i]);
 				char_p++;
-				continue;
 			}
-			
-			for (j = 0 ; funcs[j].id != '\0'; j++)
-			{
-				if (format[i] == funcs[j].id)
-				{
-					char_p += funcs[j].func(ap);
-					i++;
-					break;
-				}
-			}
-			
+
 		}
 		return (char_p);
 	}
