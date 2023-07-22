@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
-
+#include <stddef.h>
 /**
  * _printf - function that produces output according to a format
  * @format: format to print
@@ -10,7 +10,7 @@
 
 int _printf(const char *format, ...)
 {
-	int char_p = 0, i, j, printed_idf = 0;
+	int char_p = 0, i, printed_idf = 0;
 	va_list ap;
 
 	va_start(ap, format);
@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 				char_p++;
 				continue;
 			}
-			printed_idf = printId(format[i], ap);
+			printed_idf = printid(format[i], ap);
 
 			if (printed_idf > 0)
 			{
