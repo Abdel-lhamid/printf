@@ -9,6 +9,12 @@ int print_char(va_list arg);
 int print_str(va_list ap);
 int printid(char c, va_list ap);
 
+
+/**
+ * struct functab - struct functions tab
+ * @id: id of functions
+ * @func: functions pointer
+ */
 typedef struct functab
 {
 	char id;
