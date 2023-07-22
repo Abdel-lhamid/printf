@@ -36,12 +36,12 @@ int print_str(va_list ap)
 }
 
 /**
- * printId - checks for specifiers
+ * printid - checks for specifiers
  * @c: The format specifier to process.
  * @ap: arguments for the format specifier
  * Return: int
  */
-int printId(char c, va_list ap)
+int printid(char c, va_list ap)
 {
 	int i;
 	funct_t funcs[] = {
