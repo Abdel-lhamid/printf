@@ -24,15 +24,18 @@ int _printf(const char *format, ...)
 				char_p++;
 				continue;
 			}
-			i++;
-			if (format[i] == '%')
+
+			if (format[i + 1] == '%')
 			{
 				_putchar('%');
 				char_p++;
 				continue;
 			}
-			printed_idf = printid(format[i], ap);
-
+			if (format[i + 1] == '\0')
+				return(-1);
+			printed_idf = printid(format[i + 1], ap);
+			if (print_idf == -1)
+				continue;
 			if (printed_idf > 0)
 			{
 				char_p += printed_idf;
@@ -40,8 +43,6 @@ int _printf(const char *format, ...)
 			if (printed_idf == 0)
 			{
 				_putchar('%');
-				char_p++;
-				_putchar(format[i]);
 				char_p++;
 			}
 		}
