@@ -24,6 +24,8 @@ int print_str(va_list ap)
 	char *str = va_arg(ap, char *);
 
 	if (str == NULL)
+	str = "(null)";
+	else if (*str == '\0')
 	return (-1);
 
 	while (str[i] != '\0')
