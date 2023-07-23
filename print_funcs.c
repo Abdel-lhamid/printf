@@ -38,6 +38,52 @@ int print_str(va_list ap)
 }
 
 /**
+ * print_int - calls printnumber
+ * @ap: arguments for the format specifier
+ * Return: printnumber function
+ */
+int print_int(va_list ap)
+{
+	int n = va_arg(ap);
+
+	return (printnumber(n));
+}
+
+/**
+ * printnumber - prints an int
+ * @n: int to print
+ * Return: number of characters printed
+ */
+
+int printnumber(int n)
+{
+	int i = 0;
+
+	if (n < 0)
+	{
+		_putchar('-');
+		n = -n;
+		i++;
+	}
+
+	if (n == 0)
+	{
+		_putchar('0');
+		i++;
+	}
+
+	if (n / 10)
+	{
+		i += printnumber(n / 10);
+	}
+
+	_putchar(n % 10 + '0');
+	i++;
+
+	return (i);
+}
+
+/**
  * printid - checks for specifiers
  * @c: The format specifier to process.
  * @ap: arguments for the format specifier
@@ -49,6 +95,8 @@ int printid(char c, va_list ap)
 	funct_t funcs[] = {
 	{'c', print_char},
 	{'s', print_str},
+	{'i', print_int},
+	{'d', print_int},
 	{'\0', NULL}
 	};
 	for (i = 0; funcs[i].id != '\0'; i++)
