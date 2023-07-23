@@ -25,8 +25,6 @@ int _printf(const char *format, ...)
 				continue;
 			}
 			i++;
-			if (format[i] == '\0')
-				return (-1);
 			if (format[i] == '%')
 			{
 				_putchar('%');
@@ -34,6 +32,7 @@ int _printf(const char *format, ...)
 				continue;
 			}
 			printed_idf = printid(format[i], ap);
+
 			if (printed_idf > 0)
 			{
 				char_p += printed_idf;
