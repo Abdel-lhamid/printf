@@ -31,10 +31,7 @@ int _printf(const char *format, ...)
           
     
 
-        
-        Expand All
-    
-    @@ -45,7 +44,6 @@ int _printf(const char *format, ...)
+int _printf(const char *format, ...)
   
 				_putchar('%');
 				char_p++;
@@ -56,16 +53,6 @@ int _printf(const char *format, ...)
 		return (char_p);
 	}
 
-    
-          
-            
-    
-
-          
-          Expand Down
-    
-    
-  
 	va_end(ap);
 	return (-1);
 }
