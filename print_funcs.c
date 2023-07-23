@@ -45,6 +45,9 @@ int print_str(va_list ap)
 int print_int(va_list ap)
 {
 	int n = va_arg(ap, int);
+
+	if (n == NULL)
+		return (-1);
 	return (printnumber(n));
 }
 
@@ -57,7 +60,9 @@ int print_int(va_list ap)
 int printnumber(int n)
 {
 	int i = 0;
-	if (n < 0) {
+
+	if (n < 0)
+	{
 		_putchar('-');
 		n = -n;
 		i++;
@@ -69,7 +74,7 @@ int printnumber(int n)
 		i++;
 	}
 
-	if (n/10)
+	if (n / 10)
 	{
 		i += printnumber(n / 10);
 	}
