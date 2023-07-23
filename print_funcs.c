@@ -58,5 +58,5 @@ int printid(char c, va_list ap)
 		return (funcs[i].func(ap));
 		}
 	}
-	return (0);
+	return (-1);
 }
