@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 			{
 				char_p += printed_idf;
 			}
-			if (printed_idf == 0)
+			if (printed_idf == 0 || printed_idf == -1)
 			{
 				_putchar('%');
 				char_p++;
