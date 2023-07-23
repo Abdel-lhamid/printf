@@ -35,7 +35,7 @@ int _printf(const char *format, ...)
 				return(-1);
 			printed_idf = printid(format[i + 1], ap);
 			if (print_idf == -1)
-				continue;
+				i++;
 			if (printed_idf > 0)
 			{
 				char_p += printed_idf;
