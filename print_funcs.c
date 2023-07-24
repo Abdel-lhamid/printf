@@ -42,6 +42,7 @@ int print_str(va_list ap)
  * @ap: arguments for the format specifier
  * Return: number of characters printed
  */
+
 int print_int(va_list ap)
 {
     unsigned int divisor = 1, i, resp, charPrinted = 0;
@@ -65,8 +66,6 @@ int print_int(va_list ap)
 
     return (charPrinted);
 }
-
-
 
 /**
  * printid - checks for specifiers
