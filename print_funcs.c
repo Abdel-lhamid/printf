@@ -44,44 +44,28 @@ int print_str(va_list ap)
  */
 int print_int(va_list ap)
 {
-	int n = va_arg(ap, int);
+    unsigned int divisor = 1, i, resp, charPrinted = 0;
+    int n = va_arg(ap, int);
 
-	return (printnumber(n));
+    if (n < 0)
+    {
+        _putchar('-');
+        charPrinted++;
+        n *= -1;
+    }
+
+    for (i = 0; n / divisor > 9; i++, divisor *= 10)
+        ;
+
+    for (; divisor >= 1; n %= divisor, divisor /= 10, charPrinted++)
+    {
+        resp = n / divisor;
+        _putchar('0' + resp);
+    }
+
+    return (charPrinted);
 }
 
-/**
- * printnumber - prints an int
- * @n: int to print
- * Return: number of characters printed
- */
-
-int printnumber(int n)
-{
-	int i = 0;
-
-	if (n < 0)
-	{
-		_putchar('-');
-		n = -n;
-		i++;
-	}
-
-	if (n == 0)
-	{
-		_putchar('0');
-		i++;
-	}
-
-	if (n / 10)
-	{
-		i += printnumber(n / 10);
-	}
-
-	_putchar(n % 10 + '0');
-	i++;
-
-	return (i);
-}
 
 
 /**
