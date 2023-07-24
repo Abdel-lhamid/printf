@@ -45,7 +45,11 @@ int print_str(va_list ap)
  */
 int print_number(int n, int is_negative)
 {
-	int i = 0, num_digits = 0, temp = n;
+	int i = 0, j, num_digits = 0, temp = n;
+
+	int divisor = 1;
+
+	int digit;
 
 	if (n == 0)
 	{
@@ -63,13 +67,12 @@ int print_number(int n, int is_negative)
 	}
 	while (num_digits++ < 5)
 		_putchar('0');
-	int divisor = 1;
 
-	for (int j = 1; j < num_digits; j++)
+	for (j = 1; j < num_digits; j++)
 		divisor *= 10;
 	while (divisor >= 1)
 	{
-		int digit = n / divisor;
+		digit = n / divisor;
 
 		_putchar(digit + '0');
 		i++;
@@ -78,7 +81,8 @@ int print_number(int n, int is_negative)
 	}
 	return (i);
 }
- /**
+
+/**
  * print_int - prints an integer
  * @ap: arguments for the format specifier
  * Return: number of characters printed
