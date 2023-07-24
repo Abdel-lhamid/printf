@@ -9,7 +9,7 @@ int print_char(va_list arg);
 int print_str(va_list ap);
 int printid(char c, va_list ap);
 int print_int(va_list ap);
-int print_number(int n, int is_negative);
+int printnumber(int n);
 
 
 /**

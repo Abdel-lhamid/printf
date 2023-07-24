@@ -38,51 +38,6 @@ int print_str(va_list ap)
 }
 
 /**
- * print_number - prints an int
- * @n: int to print
- * @is_negative: checks for negative
- * Return: number of characters printed
- */
-int print_number(int n, int is_negative)
-{
-	int i = 0, j, num_digits = 0, temp = n;
-
-	int divisor = 1;
-
-	int digit;
-
-	if (n == 0)
-	{
-		_putchar('0');
-		return (1);
-	}
-	do {
-		temp /= 10;
-
-		num_digits++;
-	} while (temp != 0);
-	if (is_negative)
-	{
-		num_digits--;
-	}
-	while (num_digits++ < 5)
-		_putchar('0');
-
-	for (j = 1; j < num_digits; j++)
-		divisor *= 10;
-	while (divisor >= 1)
-	{
-		digit = n / divisor;
-
-		_putchar(digit + '0');
-		i++;
-		n %= divisor;
-		divisor /= 10;
-	}
-	return (i);
-}
-
-/**
  * print_int - prints an integer
  * @ap: arguments for the format specifier
  * Return: number of characters printed
@@ -90,18 +45,44 @@ int print_number(int n, int is_negative)
 
 int print_int(va_list ap)
 {
-	int n = va_arg(ap, int), i = 0, is_negative = 0;
+	int n = va_arg(ap, int);
+
+	return (printnumber(n));
+}
+
+/**
+ * printnumber - prints an int
+ * @n: int to print
+ * Return: number of characters printed
+ */
+
+int printnumber(int n)
+{
+	int i = 0;
 
 	if (n < 0)
 	{
-		is_negative = 1;
+		_putchar('-');
 		n = -n;
 		i++;
-		}
-		i += print_number(n, is_negative);
-		return (i);
-}
+	}
 
+	if (n == 0)
+	{
+		_putchar('0');
+		i++;
+	}
+
+	if (n / 10)
+	{
+		i += printnumber(n / 10);
+	}
+
+	_putchar(n % 10 + '0');
+	i++;
+
+	return (i);
+}
 /**
  * printid - checks for specifiers
  * @c: The format specifier to process.
