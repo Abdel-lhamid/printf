@@ -1,6 +1,7 @@
 #include "main.h"
 #include <unistd.h>
 #include <stdio.h>
+
 /**
  * print_char - prints character
  * @arg: object representing the variable argument list
@@ -66,29 +67,6 @@ int print_int(va_list ap)
 
 	return (charPrinted);
 }
-
-
-/**
- * unsignedIntToBinary - print u i as binary
- * @ap: va_list
- * @Return: the number of char printed
- */
-int unsignedIntToBinary(va_list ap)
-{
-	unsigned int num = va_arg(ap, unsigned int);
-	int count = 0;
-	unsigned int bit = 1 << (sizeof(unsigned int) * 8 - 1);
-
-	while (bit > 0)
-	{
-		_putchar((num & bit) ? '1' : '0');
-		bit >>= 1;
-		count++;
-	}
-
-	return (count);
-}
-
 /**
  * printid - checks for specifiers
  * @c: The format specifier to process.
@@ -103,7 +81,7 @@ int printid(char c, va_list ap)
 	{'s', print_str},
 	{'i', print_int},
 	{'d', print_int},
-	{'b', unsignedIntToBinary},
+	{'b', print_binary},
 	{'\0', NULL}
 	};
 	for (i = 0; funcs[i].id != '\0'; i++)
