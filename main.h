@@ -9,7 +9,8 @@ int print_char(va_list arg);
 int print_str(va_list ap);
 int printid(char c, va_list ap);
 int print_int(va_list ap);
-int unsignedIntToBinary(va_list ap);
+int print_binary(va_list ap);
+void print_binary_recursive(unsigned int n, int *printed);
 
 
 /**
