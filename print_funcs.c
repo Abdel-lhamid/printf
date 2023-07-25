@@ -44,29 +44,48 @@ int print_str(va_list ap)
  */
 int print_int(va_list ap)
 {
-    unsigned int divisor = 1, i, resp, charPrinted = 0;
-    int n = va_arg(ap, int);
+	unsigned int divisor = 1, i, resp, charPrinted = 0;
+	int n = va_arg(ap, int);
 
-    if (n < 0)
-    {
-        _putchar('-');
-        charPrinted++;
-        n *= -1;
-    }
+	if (n < 0)
+	{
+		_putchar('-');
+		charPrinted++;
+		n *= -1;
+	}
 
-    for (i = 0; n / divisor > 9; i++, divisor *= 10)
-        ;
+	for (i = 0; n / divisor > 9; i++, divisor *= 10)
+		;
 
-    for (; divisor >= 1; n %= divisor, divisor /= 10, charPrinted++)
-    {
-        resp = n / divisor;
-        _putchar('0' + resp);
-    }
+	for (; divisor >= 1; n %= divisor, divisor /= 10, charPrinted++)
+	{
+		resp = n / divisor;
+		_putchar('0' + resp);
+	}
 
-    return (charPrinted);
+	return (charPrinted);
 }
 
+/**
+ * unsignedIntToBinary - print u i as binary
+ * @ap: va_list
+ * @Return: the number of char printed
+ */
+int unsignedIntToBinary(va_list ap)
+{
+	unsigned int num = va_arg(ap, unsigned int);
+	int count = 0;
+	unsigned int bit = 1 << (sizeof(unsigned int) * 8 - 1);
 
+	while (bit > 0)
+	{
+		_putchar((num & bit) ? '1' : '0');
+		bit >>= 1;
+		count++;
+	}
+
+	return (count);
+}
 
 /**
  * printid - checks for specifiers
@@ -82,6 +101,7 @@ int printid(char c, va_list ap)
 	{'s', print_str},
 	{'i', print_int},
 	{'d', print_int},
+	{'b', unsignedIntToBinary},
 	{'\0', NULL}
 	};
 	for (i = 0; funcs[i].id != '\0'; i++)
